@@ -19,7 +19,13 @@ public class SecurityConfig {
 			//.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 			.authenticated() //들어온요청이 인증이 필요하다고 말하는건데, .access()를 설정했기때문에 이건 주석
 			.anyRequest() // 인증이 필요하지 않은 모든 요청을 말하는 것
-			.permitAll(); //모두 허용
+			.permitAll() //모두 허용
+			.and()
+			.formLogin() //로그인 (인증) 이 필요한 요청이 들어오면
+			.loginPage("/auth/signin") //로그인페이지 이동
+			.defaultSuccessUrl("/"); //인증이 정상적으로 완료되면 /로 이동
+			
+			
 		
 		    return http.build();
 			
