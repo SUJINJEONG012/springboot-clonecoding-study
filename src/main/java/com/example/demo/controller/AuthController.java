@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.domain.User;
 import com.example.demo.dto.SignupDto;
 
 
@@ -30,6 +31,10 @@ public class AuthController {
 	@PostMapping("/auth/signup")
 	public String signup(SignupDto signupDto) {
 		log.info("@@@ log확인 ::"+ signupDto.toString());
+		
+		User user = signupDto.toEntity();
+		log.info(user.toString());
+		 
 		return "auth/signin"; //회원가입이 되면 로그인페이지로 이동하게끔
 	}
 	
