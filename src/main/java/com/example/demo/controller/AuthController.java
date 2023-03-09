@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -37,7 +39,7 @@ public class AuthController {
 	
 	//회원가입기능
 	@PostMapping("/auth/signup")
-	public String signup(SignupDto signupDto) {
+	public String signup(@Valid SignupDto signupDto) {
 		log.info("@@@ log확인 ::"+ signupDto.toString());
 		
 		User user = signupDto.toEntity();
