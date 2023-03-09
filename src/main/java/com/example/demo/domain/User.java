@@ -48,7 +48,7 @@ public class User {
 	private LocalDateTime createDate; //데이터 입력시간
 	
 	/*
-	 * 데이터가  insert 되기 직전 실행해준다.
+	 * 데이터가 insert 되기 직전 실행해준다.
 	 * */
 	@PrePersist
 	public void createDate() {
