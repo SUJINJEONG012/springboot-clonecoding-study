@@ -45,7 +45,7 @@ public class AuthController {
 	
 	//회원가입기능
 	@PostMapping("/auth/signup")
-	public @ResponseBody String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
+	public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
 		
 		if(bindingResult.hasErrors()) {
 			Map<String, String> errorMap = new HashMap<>();
@@ -54,7 +54,7 @@ public class AuthController {
 				errorMap.put(error.getField(), error.getDefaultMessage());
 				System.out.println(error.getDefaultMessage());	
 			}
-			return "오류발생";
+		   throw new RuntimeException(errorMap.toString());
 		}else {
 			//log.info("@@@ log확인 ::"+ signupDto.toString());
 			User user = signupDto.toEntity();
