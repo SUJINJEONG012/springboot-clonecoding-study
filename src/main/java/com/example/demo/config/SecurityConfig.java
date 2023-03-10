@@ -33,6 +33,7 @@ public class SecurityConfig {
 			.and()
 			.formLogin() //로그인 (인증) 이 필요한 요청이 들어오면
 			.loginPage("/auth/signin") //로그인페이지 이동
+			.loginProcessingUrl("/auth/signin") // auth/signin이라는 post요청을 실행
 			.defaultSuccessUrl("/"); //인증이 정상적으로 완료되면 /로 이동
 			
 			
