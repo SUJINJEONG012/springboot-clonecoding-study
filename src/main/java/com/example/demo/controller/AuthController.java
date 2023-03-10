@@ -12,10 +12,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.domain.User;
 import com.example.demo.dto.SignupDto;
+import com.example.demo.handler.ex.CustomValidationException;
 import com.example.demo.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -54,14 +54,12 @@ public class AuthController {
 				errorMap.put(error.getField(), error.getDefaultMessage());
 				System.out.println(error.getDefaultMessage());	
 			}
-		   throw new RuntimeException(errorMap.toString());
+		   throw new CustomValidationException("유효성검사를 실패하였습니다. ", errorMap);
 		}else {
 			//log.info("@@@ log확인 ::"+ signupDto.toString());
 			User user = signupDto.toEntity();
-			//log.info(user.toString());
-			
-			authService.회원가입(user);
-			 
+			log.info(user.toString());
+			authService.회원가입(user); 
 			return "auth/signin"; //회원가입이 되면 로그인페이지로 이동하게끔
 		}
 		
