@@ -2,25 +2,30 @@ package com.example.demo.config.auth;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.demo.domain.User;
 
+import lombok.Data;
+
+@Data
 public class PrincipalDetails implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 	
 	//User 생성자 만들어주기, PrincipalDetailsService 에서 리턴값으로 userEntity 받아오기 위해
 	private User user;
-	
+	private Map<String, Object> attributes;
+	 
 	public PrincipalDetails(User user) {
 		this.user = user;
 	}
-		
 	
-	
+    
+    
 
 	// user 정보를 가져온느 getter메서드
 	@Override
@@ -75,6 +80,7 @@ public class PrincipalDetails implements UserDetails {
 		return collector;
 	}
 	
+
 	
 
 

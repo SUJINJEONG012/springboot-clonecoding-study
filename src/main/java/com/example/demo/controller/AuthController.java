@@ -38,7 +38,7 @@ public class AuthController {
 	}
 	
 	
-//회원가입
+   //회원가입
 	@PostMapping("/auth/signup")
 	public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
 		User user = signupDto.toEntity();
